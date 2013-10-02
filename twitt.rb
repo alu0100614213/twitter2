@@ -9,9 +9,11 @@ class Mostrar_Twitt
     req = Rack::Request.new(env)
     res = Rack::Response.new 
     res['Content-Type'] = 'text/html'
-
+    #Obtiene el nombre del usuario
     user_name = (req["user"] && req["user"] != '') ? req["user"] :''
+    #Obtiene los tweets del usuario 
     user_tweets = (!user_name.empty? && tweets_number.zero) ? user_reg?(user_name) : ''
+    #Formulario
     res.write <<-"EOS"
     <!DOCTYPE HTML>
     <html>
@@ -32,7 +34,7 @@ class Mostrar_Twitt
     EOS
     res.finish
   end
-
+  #Comprueba que el usuario esta registrado en Twitter
   def user_reg?(user)
     begin
     	Twitter.user_timeline(user).first.text
