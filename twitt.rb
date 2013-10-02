@@ -1,3 +1,4 @@
+#librerias 
 require 'twitter'
 require './configure'
 require 'thin'
